@@ -16,15 +16,41 @@ func get_current_date() -> String:
 	YEAR = datetime["year"]
 	return "%s %d , %d" % [MONTH, DAY, YEAR]
 
-
 func _ready() -> void:
 	if not SAVE_DIR.dir_exists("user://save_data"):
 		SAVE_DIR.make_dir("user://save_data")
 		
 	get_current_date()
 
+func save_file(Store: String, Item: String, Price: String):
+	var date = get_current_date()
+	
+	var existing_data = load_file()
+	if existing_data == null:
+		existing_data = {}
 
-func save_file(data: Dictionary):
+	# Initialize store array if it doesn't exist
+	if Store not in existing_data:
+		existing_data[Store] = []
+
+	# Check if item already exists and update its price
+	var item_found = false
+	for i in existing_data[Store]:
+		if i["Item_Name"] == Item:
+			i["Item_Price"] = float(Price)
+			i["Date"] = date
+			item_found = true
+			break
+			
+	# Append the new item
+	if not item_found:
+		existing_data[Store].append({
+			"Item_Name": Item,
+			"Item_Price": float(Price),
+			"Date": date
+		})
+	
+	var data = existing_data
 	var json_string = JSON.stringify(data, "\t")
 	var file = FileAccess.open(SavePath, FileAccess.WRITE)
 	

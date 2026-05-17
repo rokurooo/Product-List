@@ -5,6 +5,15 @@
 [sub_resource type="LabelSettings" id="LabelSettings_vkw83"]
 font_size = 30
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkw83"]
+bg_color = Color(0.18116099, 0.10873448, 0.29943818, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ejomr"]
+font_size = 25
+font_color = Color(0.94428116, 0.94428116, 0.94428116, 1)
+outline_size = 5
+outline_color = Color(0.44505435, 0.66820776, 0.32225814, 1)
+
 [node name="Main_Screen" type="Control" unique_id=2010302701]
 layout_mode = 3
 anchors_preset = 15
@@ -37,22 +46,21 @@ label_settings = SubResource("LabelSettings_vkw83")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=2122630551]
+[node name="Inputs" type="HBoxContainer" parent="VBoxContainer" unique_id=2122630551]
 layout_mode = 2
-alignment = 1
 
-[node name="Shop" type="TextEdit" parent="VBoxContainer/HBoxContainer" unique_id=2085164517]
-custom_minimum_size = Vector2(200, 50)
+[node name="Shop" type="TextEdit" parent="VBoxContainer/Inputs" unique_id=2085164517]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 placeholder_text = "Store Name"
 
-[node name="Item" type="TextEdit" parent="VBoxContainer/HBoxContainer" unique_id=1684620194]
-custom_minimum_size = Vector2(200, 50)
+[node name="Item" type="TextEdit" parent="VBoxContainer/Inputs" unique_id=1684620194]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 placeholder_text = "Item Name"
 
-[node name="Price" type="TextEdit" parent="VBoxContainer/HBoxContainer" unique_id=447860353]
-custom_minimum_size = Vector2(200, 50)
+[node name="Price" type="TextEdit" parent="VBoxContainer/Inputs" unique_id=447860353]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 placeholder_text = "Item Price"
 context_menu_enabled = false
@@ -61,12 +69,82 @@ shortcut_keys_enabled = false
 drag_and_drop_selection_enabled = false
 middle_mouse_paste_enabled = false
 
-[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer" unique_id=495852881]
-visible = false
-layout_mode = 2
-
-[node name="Submit" type="Button" parent="VBoxContainer" unique_id=1226026996]
+[node name="Submit" type="Button" parent="VBoxContainer/Inputs" unique_id=1226026996]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Submit"
 
-[connection signal="pressed" from="VBoxContainer/Submit" to="." method="_on_submit_pressed"]
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Inputs" unique_id=495852881]
+visible = false
+layout_mode = 2
+
+[node name="Contents" type="HBoxContainer" parent="VBoxContainer" unique_id=637731970]
+layout_mode = 2
+
+[node name="Shops" type="RichTextLabel" parent="VBoxContainer/Contents" unique_id=1017319016]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "My name issss reyyk"
+fit_content = true
+scroll_active = false
+
+[node name="Items" type="RichTextLabel" parent="VBoxContainer/Contents" unique_id=1302459765]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "My name issss reyyk"
+fit_content = true
+scroll_active = false
+
+[node name="Price" type="RichTextLabel" parent="VBoxContainer/Contents" unique_id=1059296215]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "My name issss reyyk"
+fit_content = true
+scroll_active = false
+
+[node name="Identifier" type="HBoxContainer" parent="VBoxContainer" unique_id=167679470]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Shop" type="Label" parent="VBoxContainer/Identifier" unique_id=866944918]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_vkw83")
+text = "Store Name"
+label_settings = SubResource("LabelSettings_ejomr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item" type="Label" parent="VBoxContainer/Identifier" unique_id=289765362]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_vkw83")
+text = "Item Name"
+label_settings = SubResource("LabelSettings_ejomr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Price" type="Label" parent="VBoxContainer/Identifier" unique_id=1229087386]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_vkw83")
+text = "Item Price"
+label_settings = SubResource("LabelSettings_ejomr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/Identifier" unique_id=844324227]
+visible = false
+layout_mode = 2
+
+[connection signal="text_changed" from="VBoxContainer/Inputs/Shop" to="." method="_on_shop_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Inputs/Item" to="." method="_on_item_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Inputs/Price" to="." method="_on_price_text_changed"]
+[connection signal="pressed" from="VBoxContainer/Inputs/Submit" to="." method="_on_submit_pressed"]
