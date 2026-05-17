@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://fkpccfsifktj"]
+
+[ext_resource type="Script" uid="uid://b51aoqoioktqp" path="res://MainScripts/main_screen.gd" id="1_vkw83"]
+
+[node name="Main_Screen" type="Control" unique_id=2010302701]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vkw83")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1830228652]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19076231, 0.19076234, 0.19076225, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=176646615]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.14133333
+anchor_top = 0.11319444
+anchor_right = 0.85866666
+anchor_bottom = 0.88680553
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=245448536]
+layout_mode = 2
+
+[node name="CurrentDate" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=862758089]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=2122630551]
+layout_mode = 2
+alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=2085164517]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+placeholder_text = "First Ball"
+
+[node name="TextEdit2" type="TextEdit" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1684620194]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+placeholder_text = "Second ball"
+
+[node name="Submit" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1226026996]
+layout_mode = 2
+text = "Submit"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Submit" to="." method="_on_submit_pressed"]
