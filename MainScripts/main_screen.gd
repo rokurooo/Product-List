@@ -21,13 +21,25 @@ func _process(_delta: float) -> void:
 func _on_submit_pressed() -> void:
 	if StoreName.text and ItemName.text and ItemPrice.text == null:
 		return
+	print (StoreName.text)
 	
 	var current_date = GlobalScript.get_current_date()
-	var data = {
-		"Store_Name": StoreName.text,
+	
+	# Load existing data
+	var existing_data = GlobalScript.load_file()
+	if existing_data == null:
+		existing_data = {}
+	
+	# Initialize store array if it doesn't exist
+	if StoreName.text not in existing_data:
+		existing_data[StoreName.text] = []
+	
+	# Append the new item
+	existing_data[StoreName.text].append({
 		"Item_Name": ItemName.text,
-		"Item_Price" : float(ItemPrice.text),
+		"Item_Price": float(ItemPrice.text),
 		"date": current_date
-	}
-	GlobalScript.save_file(data)
+	})
+	
+	GlobalScript.save_file(existing_data)
 	
