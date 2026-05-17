@@ -19,12 +19,14 @@ func _process(_delta: float) -> void:
 
 
 func _on_submit_pressed() -> void:
-	var current_date = GlobalScript.get_current_date()
+	if StoreName.text and ItemName.text and ItemPrice.text == null:
+		return
 	
+	var current_date = GlobalScript.get_current_date()
 	var data = {
-		"Store_Name": StoreName,
-		"Item_Name": ItemName,
-		"Item_Price" : ItemPrice,
+		"Store_Name": StoreName.text,
+		"Item_Name": ItemName.text,
+		"Item_Price" : float(ItemPrice.text),
 		"date": current_date
 	}
 	GlobalScript.save_file(data)
