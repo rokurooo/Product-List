@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://fkpccfsifktj"]
 
 [ext_resource type="Script" uid="uid://b51aoqoioktqp" path="res://MainScripts/main_screen.gd" id="1_vkw83"]
+[ext_resource type="Script" uid="uid://dafbb7bol514d" path="res://MainScripts/contents.gd" id="2_ejomr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vkw83"]
 font_size = 30
@@ -80,6 +81,7 @@ layout_mode = 2
 
 [node name="Contents" type="HBoxContainer" parent="VBoxContainer" unique_id=637731970]
 layout_mode = 2
+script = ExtResource("2_ejomr")
 
 [node name="Shops" type="RichTextLabel" parent="VBoxContainer/Contents" unique_id=1017319016]
 custom_minimum_size = Vector2(150, 0)

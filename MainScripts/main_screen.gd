@@ -32,21 +32,17 @@ func _on_submit_pressed() -> void:
 	GlobalScript.save_file(StoreName.text,ItemName.text,ItemPrice.text)
 	
 
-func _on_shop_text_changed() -> void:
-	data_list = GlobalScript.load_file()
-	var shop_name = StoreName.text
+@onready var contents = $VBoxContainer/Contents
 
-	if shop_name in data_list:
-		print("Shop found: ", shop_name)
-		display_shop_items(shop_name)
-	else:
-		print("Shop not found: ", shop_name)
-		# Clear the lists if needed
-		Itemlist.clear()
-		Pricelist.clear()
+var shop_name
+func _on_shop_text_changed() -> void:
+	shop_name = StoreName.text
+
+	contents.matched_shops(shop_name)
 
 
 func _on_item_text_changed() -> void:
+	contents.matched_items(shop_name,ItemName.text)
 
 	pass # Replace with function body.
 
