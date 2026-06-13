@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://bcvefxg1njiw4"]
 
+[ext_resource type="Theme" uid="uid://c700gxvpi6778" path="res://Themes/theme.tres" id="1_63ai0"]
+
 [node name="Inputs" type="HBoxContainer" unique_id=1351941071]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 50.0
 grow_horizontal = 2
+theme = ExtResource("1_63ai0")
 
 [node name="Shop" type="TextEdit" parent="." unique_id=987371019]
 custom_minimum_size = Vector2(0, 50)

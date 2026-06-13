@@ -1,12 +1,53 @@
 [gd_scene format=3 uid="uid://fkpccfsifktj"]
 
+[ext_resource type="PackedScene" uid="uid://ddgpv7navjqxl" path="res://MainScene/add.tscn" id="2_0avy4"]
 [ext_resource type="Theme" uid="uid://c700gxvpi6778" path="res://Themes/theme.tres" id="2_4xim8"]
 [ext_resource type="PackedScene" uid="uid://diryx7l1prcrw" path="res://Themes/color_palette.tscn" id="3_0avy4"]
+[ext_resource type="PackedScene" uid="uid://xwpx6ctiqvyo" path="res://MainScene/content_holder.tscn" id="3_4xim8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4xim8"]
 
 [sub_resource type="Theme" id="Theme_pqr1d"]
 Panel/styles/panel = SubResource("StyleBoxEmpty_4xim8")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5im0k"]
+bg_color = Color(0.38115525, 0.07881608, 0.41417044, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.60784316, 0.03529412, 0.5372549, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gaht"]
+content_margin_bottom = 10.0
+bg_color = Color(0.13444898, 0.110022165, 0.26910233, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.60784316, 0.03529412, 0.5372549, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mahag"]
+bg_color = Color(0.5202068, 0.12291535, 0.67227644, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.60784316, 0.03529412, 0.5372549, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u8sqy"]
+bg_color = Color(0.28353447, 0.1741803, 0.43143523, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5im0k"]
 
@@ -54,15 +95,6 @@ corner_radius_bottom_left = 10
 [sub_resource type="LabelSettings" id="LabelSettings_vkw83"]
 font_size = 30
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkw83"]
-bg_color = Color(0.18116099, 0.10873448, 0.29943818, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_ejomr"]
-font_size = 25
-font_color = Color(0.94428116, 0.94428116, 0.94428116, 1)
-outline_size = 5
-outline_color = Color(0.44505435, 0.66820776, 0.32225814, 1)
-
 [node name="Main_Screen" type="Control" unique_id=2010302701]
 layout_mode = 3
 anchors_preset = 15
@@ -70,6 +102,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_vertical_guides_ = [5.0, 355.0]
 
 [node name="BG" type="Panel" parent="." unique_id=1593453900]
 z_index = -5
@@ -85,7 +118,7 @@ theme = ExtResource("2_4xim8")
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 0.1025
+anchor_bottom = 0.0975
 theme = ExtResource("2_4xim8")
 metadata/_edit_use_anchors_ = true
 
@@ -103,6 +136,23 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = SubResource("Theme_pqr1d")
 
+[node name="Add" parent="HEADER/VBoxContainer/HBoxContainer/Panel" unique_id=1187253625 instance=ExtResource("2_0avy4")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 21.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_5im0k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6gaht")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mahag")
+theme_override_styles/focus = SubResource("StyleBoxFlat_u8sqy")
+text = "+"
+
 [node name="Panel2" type="Panel" parent="HEADER/VBoxContainer/HBoxContainer" unique_id=900404215]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -110,15 +160,21 @@ theme = SubResource("Theme_pqr1d")
 
 [node name="Title" type="Label" parent="HEADER/VBoxContainer/HBoxContainer/Panel2" unique_id=103469658]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -18.5
+offset_right = 119.0
+offset_bottom = 18.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.9507027, 0.81896096, 0.9620246, 1)
 theme_override_colors/font_outline_color = Color(0.29829726, 0.006998187, 0.2606307, 1)
 theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5im0k")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6gaht")
 text = "Item Price Tracker"
@@ -130,14 +186,18 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = SubResource("Theme_pqr1d")
 
-[node name="Title2" type="Button" parent="HEADER/VBoxContainer/HBoxContainer/Panel3" unique_id=38895346]
+[node name="Exit" type="Button" parent="HEADER/VBoxContainer/HBoxContainer/Panel3" unique_id=38895346]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.12
-anchor_top = 0.08
-anchor_right = 0.96
-anchor_bottom = 0.92
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/align_to_largest_stylebox = 1
@@ -147,7 +207,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_0avy4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4xim8")
 theme_override_styles/focus = SubResource("StyleBoxFlat_pqr1d")
 text = "x"
-metadata/_edit_use_anchors_ = true
 
 [node name="DateToday" type="Label" parent="HEADER/VBoxContainer" unique_id=149895630]
 layout_mode = 2
@@ -167,121 +226,99 @@ text = "By: rakehoe"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="BODY" type="VBoxContainer" parent="." unique_id=245448536]
+[node name="CurrentDate" type="Label" parent="." unique_id=862758089]
+visible = false
 layout_mode = 0
 offset_left = 70.99999
 offset_top = 163.0
 offset_right = 679.0
-offset_bottom = 1277.0
-
-[node name="CurrentDate" type="Label" parent="BODY" unique_id=862758089]
-layout_mode = 2
+offset_bottom = 205.0
 text = "Testt"
 label_settings = SubResource("LabelSettings_vkw83")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Inputs" type="HBoxContainer" parent="BODY" unique_id=2122630551]
+[node name="BODY" type="VBoxContainer" parent="." unique_id=245448536]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -712.0
+offset_right = 175.0
+offset_bottom = 528.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_4xim8")
+theme_override_constants/separation = 5
+
+[node name="Search" type="HBoxContainer" parent="BODY" unique_id=2122630551]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_constants/separation = -17
+
+[node name="SearchBar" type="LineEdit" parent="BODY/Search" unique_id=1387496377]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+placeholder_text = "Search"
+
+[node name="Submit" type="Button" parent="BODY/Search" unique_id=1226026996]
 visible = false
-layout_mode = 2
-
-[node name="Shop" type="TextEdit" parent="BODY/Inputs" unique_id=2085164517]
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 2
-placeholder_text = "Store Name"
-
-[node name="Item" type="TextEdit" parent="BODY/Inputs" unique_id=1684620194]
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 2
-placeholder_text = "Item Name"
-
-[node name="Price" type="TextEdit" parent="BODY/Inputs" unique_id=447860353]
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 2
-placeholder_text = "Item Price"
-context_menu_enabled = false
-emoji_menu_enabled = false
-shortcut_keys_enabled = false
-drag_and_drop_selection_enabled = false
-middle_mouse_paste_enabled = false
-
-[node name="Submit" type="Button" parent="BODY/Inputs" unique_id=1226026996]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Submit"
 
-[node name="SpinBox" type="SpinBox" parent="BODY/Inputs" unique_id=495852881]
-visible = false
-layout_mode = 2
-
-[node name="Contents" type="HBoxContainer" parent="BODY" unique_id=637731970]
-visible = false
-layout_mode = 2
-
-[node name="Shops" type="RichTextLabel" parent="BODY/Contents" unique_id=1017319016]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 14
-bbcode_enabled = true
-text = "My name issss reyyk"
-fit_content = true
-scroll_active = false
-
-[node name="Items" type="RichTextLabel" parent="BODY/Contents" unique_id=1302459765]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 14
-bbcode_enabled = true
-text = "My name issss reyyk"
-fit_content = true
-scroll_active = false
-
-[node name="Price" type="RichTextLabel" parent="BODY/Contents" unique_id=1059296215]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 14
-bbcode_enabled = true
-text = "My name issss reyyk"
-fit_content = true
-scroll_active = false
-
 [node name="Identifier" type="HBoxContainer" parent="BODY" unique_id=167679470]
-visible = false
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme_override_constants/separation = -15
 alignment = 1
 
 [node name="Shop" type="Label" parent="BODY/Identifier" unique_id=866944918]
-custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_vkw83")
-text = "Store Name"
-label_settings = SubResource("LabelSettings_ejomr")
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Shops"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Item" type="Label" parent="BODY/Identifier" unique_id=289765362]
-custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_vkw83")
-text = "Item Name"
-label_settings = SubResource("LabelSettings_ejomr")
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Items"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Price" type="Label" parent="BODY/Identifier" unique_id=1229087386]
-custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_vkw83")
-text = "Item Price"
-label_settings = SubResource("LabelSettings_ejomr")
+size_flags_horizontal = 3
+size_flags_vertical = 5
+text = "Prices"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="BODY/Identifier" unique_id=844324227]
-visible = false
+[node name="Contents" type="VBoxContainer" parent="BODY" unique_id=549136057]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="contents" parent="BODY/Contents" unique_id=1633328046 instance=ExtResource("3_4xim8")]
 layout_mode = 2
 
-[node name="Node" parent="." unique_id=783362004 instance=ExtResource("3_0avy4")]
+[node name="contents2" parent="BODY/Contents" unique_id=761722371 instance=ExtResource("3_4xim8")]
+layout_mode = 2
+
+[node name="contents3" parent="BODY/Contents" unique_id=1844436626 instance=ExtResource("3_4xim8")]
+layout_mode = 2
+
+[node name="contents4" parent="BODY/Contents" unique_id=1819563011 instance=ExtResource("3_4xim8")]
+layout_mode = 2
+
+[node name="ColorPalette" parent="." unique_id=783362004 instance=ExtResource("3_0avy4")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -1.0638889
@@ -289,8 +326,3 @@ anchor_right = -0.06388889
 anchor_bottom = 0.22875
 offset_bottom = 0.0
 metadata/_edit_use_anchors_ = true
-
-[connection signal="text_changed" from="BODY/Inputs/Shop" to="." method="_on_shop_text_changed"]
-[connection signal="text_changed" from="BODY/Inputs/Item" to="." method="_on_item_text_changed"]
-[connection signal="text_changed" from="BODY/Inputs/Price" to="." method="_on_price_text_changed"]
-[connection signal="pressed" from="BODY/Inputs/Submit" to="." method="_on_submit_pressed"]

@@ -49,7 +49,7 @@ Label/styles/normal = SubResource("StyleBoxFlat_xk0s0")
 
 [sub_resource type="Animation" id="Animation_p2sn0"]
 resource_name = "Open"
-length = 0.5
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,7 +57,7 @@ tracks/0/path = NodePath(".:theme_override_constants/separation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.19999999),
 "transitions": PackedFloat32Array(0.18946487, 0.36602232),
 "update": 0,
 "values": [-30, 0]
@@ -117,7 +117,7 @@ anti_aliasing = false
 [sub_resource type="Theme" id="Theme_xk0s0"]
 Panel/styles/panel = SubResource("StyleBoxFlat_t0k6t")
 
-[node name="VBoxContainer" type="VBoxContainer" unique_id=1633328046]
+[node name="contents" type="VBoxContainer" unique_id=1633328046]
 z_index = 2
 custom_minimum_size = Vector2(0, 30)
 anchors_preset = -1
