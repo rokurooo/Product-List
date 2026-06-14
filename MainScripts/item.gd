@@ -1,32 +1,97 @@
 @tool
 extends VBoxContainer
 
-@export var edit_toggled: bool = false
+@export var need_confirm: bool = true
+@export var rake_mode: bool = false
+
 var options_toggled: bool = false
+var edit_menu_toggled: bool = false
+var delete_menu_toggled: bool = false
+
+@onready var menu_array: Array = [
+	$EditMenu,
+	$DeleteMenu
+]
+@export_category("Contents Name")
+
+@export var SHOPNAME: String:
+	set(value):
+		SHOPNAME = value
+		update_label("SHOP")
+@export var ITEMNAME: String:
+	set(value):
+		ITEMNAME = value
+		update_label("ITEM")
+@export var ITEMPRICE: String:
+	set(value):
+		ITEMPRICE = value
+		update_label("PRICE")
+
+
+func update_label(labels):
+	var Slabel: Label = $Labels/HBoxContainer/Shop
+	var Ilabel: Label = $Labels/HBoxContainer/Item
+	var Plabel: Label = $Labels/HBoxContainer/Price
+	if is_node_ready() and Slabel and Ilabel and Plabel:
+		match labels:
+			"SHOP":
+				Slabel.text = SHOPNAME
+				if SHOPNAME == "":
+					default_label(labels)
+			"ITEM":
+				Ilabel.text = ITEMNAME
+				if ITEMNAME == "":
+					default_label(labels)
+			"PRICE":
+				Plabel.text = ITEMPRICE
+				if ITEMPRICE == "":
+					default_label(labels)
+			"":
+				Slabel.text = SHOPNAME
+				Ilabel.text = ITEMNAME
+				Plabel.text = ITEMPRICE
+			
+	elif !is_node_ready():
+		request_ready()
+
+func default_label(labels):
+	var Slabel: Label = $Labels/HBoxContainer/Shop
+	var Ilabel: Label = $Labels/HBoxContainer/Item
+	var Plabel: Label = $Labels/HBoxContainer/Price
+	match labels:
+			"SHOP":
+				Slabel.text = "SHOP"
+			"ITEM":
+				Ilabel.text = "ITEM"
+			"PRICE":
+				Plabel.text = "PRICE"
+			"":
+				Slabel.text = "SHOP"
+				Ilabel.text = "ITEM"
+				Plabel.text = "PRICE"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$EditMenu.visible = false
-	pass # Replace with function body.
-	
-func _process(_delta: float) -> void:
-	if edit_toggled:
-		$EditMenu.visible = true
-	else:
-		$EditMenu.visible = false
+	for i in menu_array:
+		i.visible = false
+	update_label("")
+	default_label("")
 
 func _on_edit_pressed() -> void:
-	if !edit_toggled:
-		edit_toggled = true
-		$EditMenu.visible = true
+	if !edit_menu_toggled:
+		toggle_menus($EditMenu,edit_menu_toggled)
 	else:
-		edit_toggled = false
-		$EditMenu.visible = false
-	pass # Replace with function body.
+		toggle_menus($EditMenu,edit_menu_toggled)
 
 func _on_delete_pressed() -> void:
-	queue_free()
-	pass # Replace with function body.
+	if need_confirm:
+		if !delete_menu_toggled:
+			toggle_menus($DeleteMenu,delete_menu_toggled)
+		else:
+			toggle_menus($DeleteMenu,delete_menu_toggled)
+	else:
+		_delete_confirm()
 
 func _on_labels_pressed() -> void:
 	if !options_toggled:
@@ -37,3 +102,14 @@ func _on_labels_pressed() -> void:
 		options_toggled = false
 	pass # Replace with function body.
 
+func _delete_confirm() -> void:
+	GlobalScript.remove_item(SHOPNAME,ITEMNAME)
+	queue_free()
+
+func toggle_menus(menutabs,toggle) -> void:
+	if !toggle:
+		menutabs.visible = true
+		toggle = true
+	elif toggle:
+		menutabs.visible = false
+		toggle = false

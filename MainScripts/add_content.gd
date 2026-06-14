@@ -18,10 +18,12 @@ func _process(_delta: float) -> void:
 
 func _on_pressed() -> void:
 	if !menu_toggled:
+		text = "-"
 		header.SHOWMENU = true
 		$Menu.visible = true
 		menu_toggled = true
 	else:
+		text = "+"
 		header.SHOWMENU = false
 		$Menu.visible = false
 		menu_toggled = false

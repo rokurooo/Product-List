@@ -1,7 +1,7 @@
 extends Node
 
 var SAVE_DIR = DirAccess.open("user://")
-const SavePath = "user://save_data/saveitems.rake"
+const SavePath = "user://save_data/save.items"
 
 var MONTH: String
 var DAY: int
@@ -19,7 +19,10 @@ func get_current_date() -> String:
 func _ready() -> void:
 	if not SAVE_DIR.dir_exists("user://save_data"):
 		SAVE_DIR.make_dir("user://save_data")
-		
+
+	if not FileAccess.file_exists(SavePath):
+		default_write_file()
+
 	get_current_date()
 
 func save_file(Store: String, Item: String, Price: String):
@@ -69,14 +72,35 @@ func save_file(Store: String, Item: String, Price: String):
 
 func load_file():
 	if not FileAccess.file_exists(SavePath):
+		print("file not found")
 		return {}
 
 	var file = FileAccess.open(SavePath, FileAccess.READ)
 	var content = file.get_as_text()
-	
-	# Convert the string back into a Dictionary
+	file.close()
+
 	var data = JSON.parse_string(content)
-	
 	if data is Dictionary:
 		return data
 	return {}
+
+func default_write_file():
+	save_file("RAKE","rakehoe","9999")
+
+func remove_item(shopname,itemname):
+	var old_data = load_file()
+
+	for i in old_data[shopname]:
+		if i["Item_Name"] == itemname:
+			old_data[shopname].erase(i)
+	if old_data[shopname].is_empty():
+		old_data.erase(shopname)
+
+	var json_string = JSON.stringify(old_data,"\t")
+	var file = FileAccess.open(SavePath,FileAccess.WRITE)
+	
+	if file:
+		file.store_string(json_string)
+		file.close()
+
+	print('"%s" has been removed'%itemname)

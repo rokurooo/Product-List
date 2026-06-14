@@ -139,7 +139,7 @@ script = ExtResource("3_mq451")
 
 [node name="DateToday" type="Label" parent="VBoxContainer" unique_id=1804425377]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5im0k")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6gaht")
 text = "Date Today"
@@ -148,7 +148,7 @@ vertical_alignment = 1
 
 [node name="Credits" type="Label" parent="VBoxContainer" unique_id=288820803]
 layout_mode = 2
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxEmpty_5im0k")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6gaht")
 text = "By: rakehoe"

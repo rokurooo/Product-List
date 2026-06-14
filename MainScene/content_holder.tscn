@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bq1s2ow4y42p6" path="res://MainScripts/item.gd" id="1_abvq3"]
 [ext_resource type="Theme" uid="uid://c700gxvpi6778" path="res://Themes/theme.tres" id="2_p2sn0"]
 [ext_resource type="PackedScene" uid="uid://diryx7l1prcrw" path="res://Themes/color_palette.tscn" id="3_abvq3"]
+[ext_resource type="Script" uid="uid://b6x0tg6pq4x8b" path="res://MainScripts/edit_menu.gd" id="3_o00oc"]
 [ext_resource type="Script" uid="uid://dlacrnxxmqtji" path="res://MainScripts/delete.gd" id="4_e3bq0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2sn0"]
@@ -280,6 +281,19 @@ corner_radius_top_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 1
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ubc5h"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.25636634, 0.03797835, 0.27809763, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6080234, 0.0375442, 0.5357394, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+
 [node name="contents" type="VBoxContainer" unique_id=1633328046]
 z_index = 2
 custom_minimum_size = Vector2(0, 30)
@@ -292,6 +306,7 @@ offset_bottom = 35.44335
 grow_horizontal = 2
 theme_override_constants/separation = -30
 script = ExtResource("1_abvq3")
+rake_mode = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Labels" type="TextureButton" parent="." unique_id=1867594892]
@@ -316,7 +331,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 theme = SubResource("Theme_t0k6t")
-text = "Shop"
+text = "SHOP"
 label_settings = SubResource("LabelSettings_474o0")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -326,7 +341,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 theme = SubResource("Theme_p2sn0")
-text = "Item"
+text = "ITEM"
 label_settings = SubResource("LabelSettings_474o0")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -336,7 +351,7 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 5
 theme = SubResource("Theme_4l3hk")
-text = "Price"
+text = "PRICE"
 label_settings = SubResource("LabelSettings_474o0")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -378,6 +393,7 @@ libraries/ = SubResource("AnimationLibrary_xk0s0")
 [node name="EditMenu" type="CanvasLayer" parent="." unique_id=390470525]
 layer = 10
 visible = false
+script = ExtResource("3_o00oc")
 
 [node name="Panel2" type="Panel" parent="EditMenu" unique_id=1971565295]
 custom_minimum_size = Vector2(360, 700)
@@ -490,6 +506,7 @@ grow_vertical = 2
 
 [node name="DeleteMenu" type="CanvasLayer" parent="." unique_id=1795785603]
 layer = 10
+visible = false
 script = ExtResource("4_e3bq0")
 
 [node name="Panel2" type="Panel" parent="DeleteMenu" unique_id=321489807]
@@ -545,8 +562,8 @@ custom_minimum_size = Vector2(230, 165)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ubc5h")
 text = "Are you sure you want to delete this item?
-
 
 This is action cant be restored."
 horizontal_alignment = 1
@@ -558,20 +575,20 @@ custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_constants/separation = -15
 
-[node name="Submit" type="Button" parent="DeleteMenu/Panel2/Panel3/VBoxContainer/HBoxContainer2" unique_id=779560873]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/pressed = SubResource("StyleBoxFlat_qv2ad")
-theme_override_styles/hover = SubResource("StyleBoxFlat_rkpxs")
-theme_override_styles/focus = SubResource("StyleBoxFlat_yj07f")
-text = "Cancel"
-
-[node name="Back" type="Button" parent="DeleteMenu/Panel2/Panel3/VBoxContainer/HBoxContainer2" unique_id=1223559679]
+[node name="Cancel" type="Button" parent="DeleteMenu/Panel2/Panel3/VBoxContainer/HBoxContainer2" unique_id=1223559679]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4fcn7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_500ob")
 theme_override_styles/focus = SubResource("StyleBoxFlat_1ld30")
+text = "Cancel"
+
+[node name="Delete" type="Button" parent="DeleteMenu/Panel2/Panel3/VBoxContainer/HBoxContainer2" unique_id=779560873]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qv2ad")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rkpxs")
+theme_override_styles/focus = SubResource("StyleBoxFlat_yj07f")
 text = "Delete"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DeleteMenu/Panel2/Panel3" unique_id=1170505151]
@@ -608,6 +625,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Deadspace" type="TextureButton" parent="DeleteMenu/Panel2" unique_id=1355287066]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -618,5 +636,8 @@ grow_vertical = 2
 [connection signal="pressed" from="Labels" to="." method="_on_labels_pressed"]
 [connection signal="pressed" from="Buttons/Edit" to="." method="_on_edit_pressed"]
 [connection signal="pressed" from="Buttons/Delete" to="." method="_on_delete_pressed"]
-[connection signal="pressed" from="EditMenu/Panel2/Menu Input/Back" to="." method="_on_edit_pressed"]
-[connection signal="pressed" from="DeleteMenu/Panel2/Panel3/VBoxContainer/HBoxContainer2/Back" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="EditMenu/Panel2/Menu Input/Back" to="EditMenu" method="_on_cancel_pressed"]
+[connection signal="pressed" from="EditMenu/Panel2/Menu Input/Submit" to="EditMenu" method="_on_confirm_pressed"]
+[connection signal="delete" from="DeleteMenu" to="." method="_delete_confirm"]
+[connection signal="pressed" from="DeleteMenu/Panel2/Panel3/VBoxContainer/HBoxContainer2/Cancel" to="DeleteMenu" method="_on_cancel_pressed"]
+[connection signal="pressed" from="DeleteMenu/Panel2/Panel3/VBoxContainer/HBoxContainer2/Delete" to="DeleteMenu" method="_on_confirm_pressed"]
