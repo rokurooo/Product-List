@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://c700gxvpi6778" path="res://Themes/theme.tres" id="2_4xim8"]
 [ext_resource type="PackedScene" uid="uid://diryx7l1prcrw" path="res://Themes/color_palette.tscn" id="3_0avy4"]
 [ext_resource type="PackedScene" uid="uid://b6tbmk7cv336f" path="res://MainScene/header.tscn" id="3_pqr1d"]
-[ext_resource type="Script" uid="uid://b51aj5ovh21ol" path="res://MainScripts/contentsV2.gd" id="4_pqr1d"]
+[ext_resource type="Script" uid="uid://luixnttobsos" path="res://MainScripts/content_list.gd" id="4_4xim8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vkw83"]
 font_size = 30
@@ -121,4 +121,4 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = -1
-script = ExtResource("4_pqr1d")
+script = ExtResource("4_4xim8")

@@ -88,15 +88,15 @@ func default_write_file():
 	save_file("RAKE","rakehoe","9999")
 
 func remove_item(shopname,itemname):
-	var old_data = load_file()
+	var existing_data = load_file()
 
-	for i in old_data[shopname]:
+	for i in existing_data[shopname]:
 		if i["Item_Name"] == itemname:
-			old_data[shopname].erase(i)
-	if old_data[shopname].is_empty():
-		old_data.erase(shopname)
+			existing_data[shopname].erase(i)
+	if existing_data[shopname].is_empty():
+		existing_data.erase(shopname)
 
-	var json_string = JSON.stringify(old_data,"\t")
+	var json_string = JSON.stringify(existing_data,"\t")
 	var file = FileAccess.open(SavePath,FileAccess.WRITE)
 	
 	if file:
@@ -104,3 +104,20 @@ func remove_item(shopname,itemname):
 		file.close()
 
 	print('"%s" has been removed'%itemname)
+
+func edit_item(shopname,itemname,newprice):
+	var oldprice
+	var existing_data = load_file()
+	for i in existing_data[shopname]:
+		if i["Item_Name"] == itemname:
+			oldprice = i["Item_Price"]
+			i["Item_Price"] = float(newprice)
+			i["Date"] = get_current_date()
+
+	var json_string = JSON.stringify(existing_data,"\t")
+	var file = FileAccess.open(SavePath,FileAccess.WRITE)
+	
+	if file:
+		file.store_string(json_string)
+		file.close()
+	print('"%s" price have beed updated from %f to %s' %[itemname,oldprice,newprice])

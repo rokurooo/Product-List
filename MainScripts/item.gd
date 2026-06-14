@@ -75,11 +75,15 @@ func default_label(labels):
 func _ready() -> void:
 	for i in menu_array:
 		i.visible = false
+		i.SHOPNAME = SHOPNAME
+		i.ITEMNAME = ITEMNAME
+		i.ITEMPRICE = ITEMPRICE
 	update_label("")
 	default_label("")
 
 func _on_edit_pressed() -> void:
 	if !edit_menu_toggled:
+		$EditMenu._ready()
 		toggle_menus($EditMenu,edit_menu_toggled)
 	else:
 		toggle_menus($EditMenu,edit_menu_toggled)
@@ -102,9 +106,14 @@ func _on_labels_pressed() -> void:
 		options_toggled = false
 	pass # Replace with function body.
 
-func _delete_confirm() -> void:
+func _delete_confirm():
 	GlobalScript.remove_item(SHOPNAME,ITEMNAME)
 	queue_free()
+
+func _edit_confirm():
+	var NEWPRICE = $"EditMenu/Panel2/Menu Input/Price"
+	GlobalScript.edit_item(SHOPNAME,ITEMNAME,NEWPRICE)
+	_on_edit_pressed()
 
 func toggle_menus(menutabs,toggle) -> void:
 	if !toggle:
